@@ -27,23 +27,37 @@ const token = {
     },
   };
 
+
   const register = credentials => dispatch => {
     dispatch(registerRequest());
-    axios.post('/users/signup', credentials)
-    .then(response => dispatch(registerSuccess(response.data)))
-    .catch(err => dispatch(registerError(err.message)))
+
+    axios
+    .post('/users/signup', credentials)
+    .then(response => dispatch (registerSuccess(response.data), token.set(response.data.token)))
+    .catch(err => dispatch(registerError(err.message)));
   };
 
 
   const login = credentials => dispatch => {
     dispatch(loginRequest());
-    axios.post('/users/login', credentials)
-    .then(response => dispatch(loginSuccess(response.data)))
-    .catch(err => dispatch(loginError(err.message)))
 
+    axios
+    .post('/users/login', credentials)
+    .then(response => dispatch(loginSuccess(response.data), token.set(response.data.token)))
+    .catch(err => dispatch(loginError(err.message)));
   };
 
-  const logOut = () => dispatch => {};
+  const logOut = () => dispatch => {
+    dispatch(logoutRequest());
+
+    axios
+      .post('/users/logout')
+      .then(() => dispatch(logoutSuccess()), token.unset())
+      .catch(err => dispatch(logoutError(err.message)));
+  };
+
+
+
 
   const getCurrentUser = () => (dispatch, getState) => {};
 
@@ -52,5 +66,4 @@ const token = {
     login,
     logOut,
     getCurrentUser
-
   };
