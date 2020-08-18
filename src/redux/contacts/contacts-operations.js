@@ -1,4 +1,3 @@
-// contacts-operations
 import axios from 'axios';
 import contactActions from './contacts-actions';
 

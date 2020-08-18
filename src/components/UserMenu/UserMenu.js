@@ -1,18 +1,26 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import { Button } from 'react-bootstrap';
 import s from '../Navigation.module.css';
 
+import authSelectors from '../../redux/auth/auth-selectors';
+
+const {getUserName} = authSelectors;
 
 
 
-const UserMenu = () => (
+
+const UserMenu = ({name}) => (
   <div className={s.nav}>
-    {/* <img  alt="" width="32" /> */}
-    <span>Welcome</span>
+    <span>Welcome, {name}</span>
     <Button type="button" >
       Logout
     </Button>
   </div>
 );
 
-export default UserMenu;
+const mapStateToProps = state => ({
+  name: getUserName(state),
+})
+
+export default connect(mapStateToProps)(UserMenu);
