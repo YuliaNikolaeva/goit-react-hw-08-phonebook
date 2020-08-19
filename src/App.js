@@ -1,17 +1,32 @@
-import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React, { Component, Suspense, lazy } from 'react';
+import { Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 
+import Loader from 'react-loader-spinner';
+
 import authOperations from './redux/auth/auth-operations';
-import HomePage from './pages/HomePage';
-import ContactsPage from './pages/ContactsPage';
-import RegisterPage from './pages/RegisterPage';
-import LoginPage from './pages/LoginPage';
 import AppBar from './components/AppBar';
 
+
+const HomePage = lazy(() => 
+    import('./pages/ContactsPage' /*webpackChunkName: "home-page" */)
+);
+
+const ContactsPage = lazy(() => 
+    import('./pages/ContactsPage' /*webpackChunkName: "contacts-page" */)
+);
+
+const RegisterPage = lazy(() =>
+    import('./pages/RegisterPage' /*webpackChunkName: "register-page" */)
+);
+
+const LoginPage = lazy( () =>
+    import('./pages/LoginPage' /*webpackChunkName: "login-page" */)
+
+);
 
 const {getCurrentUser} = authOperations;
 
@@ -25,30 +40,41 @@ class App extends Component {
         return (
             <>
                 <AppBar />
-                <Switch>
-                    <PublicRoute 
-                        exact 
-                        path="/" 
-                        component={HomePage} 
-                    />
-                    <PublicRoute 
-                        path="/register" 
-                        component={RegisterPage}
-                        restricted
-                        redirectTo="/contacts"
-                    />
-                    <PublicRoute 
-                        path="/login" 
-                        component={LoginPage}
-                        restricted
-                        redirectTo="/contacts"
-                    />
-                    <PrivateRoute 
-                        path="/contacts" 
-                        component={ContactsPage}
-                        redirectTo="/login"
-                    />
-                </Switch>
+                <Suspense 
+                    fallback={
+                        <Loader
+                            type="Puff"
+                            color="#666464"
+                            height={60}
+                            width={60}
+                        />
+                    }
+                >
+                    <Switch>
+                        <PublicRoute 
+                            exact 
+                            path="/" 
+                            component={HomePage} 
+                        />
+                        <PublicRoute 
+                            path="/register" 
+                            component={RegisterPage}
+                            restricted
+                            redirectTo="/contacts"
+                        />
+                        <PublicRoute 
+                            path="/login" 
+                            component={LoginPage}
+                            restricted
+                            redirectTo="/contacts"
+                        />
+                        <PrivateRoute 
+                            path="/contacts" 
+                            component={ContactsPage}
+                            redirectTo="/login"
+                        />
+                    </Switch>
+                </Suspense>
             </>
         );
     }

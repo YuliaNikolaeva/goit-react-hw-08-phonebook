@@ -81,4 +81,5 @@ const mapDispatchToProps = dispatch => ({
   onRegister: (data) => dispatch(register(data))
 })
 
+
 export default connect(null, mapDispatchToProps)(RegisterPage);

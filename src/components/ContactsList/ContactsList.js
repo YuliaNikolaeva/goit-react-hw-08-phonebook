@@ -45,4 +45,5 @@ ContactsList.propTypes = {
     onclickBtn: PropTypes.func.isRequired,
 };
 
+
 export default connect(mapStateToProps, mapDispatchToProps)(ContactsList);

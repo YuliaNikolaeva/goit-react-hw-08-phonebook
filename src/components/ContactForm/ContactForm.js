@@ -110,4 +110,5 @@ ContactForm.propTypes = {
     value: PropTypes.string,
 };
 
+
 export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);

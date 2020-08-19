@@ -19,4 +19,5 @@ ButtonDelete.propTypes = {
     contactId: PropTypes.number,
 };
 
+
 export default ButtonDelete;

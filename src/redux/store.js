@@ -1,10 +1,9 @@
 import { 
     configureStore,
     getDefaultMiddleware,
-    combineReducers, 
 } from '@reduxjs/toolkit';
 
-import { createStore } from 'redux';
+
 import { 
     persistStore, 
     persistReducer,
@@ -18,7 +17,7 @@ import {
 
 import storage from 'redux-persist/lib/storage';
 
-import logger from 'redux-logger';
+// import logger from 'redux-logger';
 import contactReducer from './contacts/contacts-reducer';
 import authReducer from './auth/auth-reducer';
 
