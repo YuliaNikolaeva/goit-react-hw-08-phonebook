@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import s from './Navigation.module.css';
+import s from './AppBar.module.css';
+
 import Navigation from './Navigation';
 import AuthNav from './AuthNav';
 import UserMenu from './UserMenu';
@@ -11,14 +12,17 @@ const {getIsAuthenticated} = authSelectors;
 
 
 const AppBar = ({isAuthenticated}) => (
-    <div className={s.pageWrapper}>
+    <div className={s.appBarBox}>
         <header>
             <Navigation />
-            {isAuthenticated ? <UserMenu /> : <AuthNav />}
+            <div className={s.secondMenuBox}>
+                {isAuthenticated ? <UserMenu /> : <AuthNav />}
+            </div>
         </header>
     </div>
 
 );
+
 
 const mapStateToProps = state => ({
     isAuthenticated: getIsAuthenticated(state),

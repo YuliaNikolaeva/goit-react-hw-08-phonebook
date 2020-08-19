@@ -27,8 +27,7 @@ class App extends Component {
         const { contacts, isLoadingContacts } = this.props;
 
         return (
-            <div className={s.page__wrapper}>
-
+            <>
                 <Container title={'Phonebook'}>
                     {contacts.length > 1 && <Filter />}
                     <ContactForm />
@@ -47,7 +46,7 @@ class App extends Component {
                         <Message text={'Phonebook is empty'} />
                     )}
                 </Container>
-            </div>
+            </>
         );
     }
 }

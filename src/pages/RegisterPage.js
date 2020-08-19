@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import authOperations from '../redux/auth/auth-operations';
 
+import { Button } from 'react-bootstrap';
+import s from './RegisterPage.module.css';
+import Container from '../components/Container';
+
 const {register} = authOperations;
 
 
@@ -29,50 +33,54 @@ class RegisterPage extends Component {
       const {name, email, password} =this.state;
 
         return (
-            <>
-              <h2>Страница регистрации</h2>
+            <Container title="Registration page">
               <form
                   autoComplete="off"
                   onSubmit={this.handleSubmit}
               >
                 <label
+                  className={s.label}
                   autoComplete="off"
-                >Имя
+                >Name
                     <input
-                    type="text"
-                    name="name"
-                    onChange={this.handleChange}
-                    value={name}
+                      className={s.input} 
+                      type="text"
+                      name="name"
+                      onChange={this.handleChange}
+                      value={name}
                     >
                     </input>
                 </label>
   
                 <label
-
-                >Почта
+                  className={s.label}
+                >Email
                     <input
-                    type="email"
-                    name="email"
-                    onChange={this.handleChange}
-                    value={email}
+                      className={s.input} 
+                      type="email"
+                      name="email"
+                      onChange={this.handleChange}
+                      value={email}
                     >
                     </input>
                 </label>
   
                 <label
+                  className={s.label}
                   autoComplete="off"
-                >Пароль
+                >Passs
                     <input
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={this.handleChange}
+                      className={s.input} 
+                      type="password"
+                      name="password"
+                      value={password}
+                      onChange={this.handleChange}
                     >
                     </input>
                 </label>
-                <button type="submit">Зарегистрироваться</button>
+                <Button type="submit">Registration me</Button>
               </form>
-            </>
+            </Container>
           );
     }
 }

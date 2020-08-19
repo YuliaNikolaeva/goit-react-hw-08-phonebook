@@ -10,7 +10,7 @@ const {getFilter} = contactSelectors;
 const Filter = ({ value, onChange }) => {
     return (
         <label className={s.label}>
-            <div className={s.head__field}>Фильтр по имени</div>
+            <div className={s.head__field}>Filter by name</div>
             <input
                 className={s.input}
                 type="text"

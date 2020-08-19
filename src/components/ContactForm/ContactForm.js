@@ -68,6 +68,7 @@ class ContactForm extends Component {
                     <div className={s.head__field}>Name</div>
                     <input
                         type="text"
+                        placeholder=" "
                         name="name"
                         className={s.input}
                         value={this.state.name}
@@ -80,6 +81,7 @@ class ContactForm extends Component {
                     <div className={s.head__field}>Number</div>
                     <input
                         type="tel"
+                        placeholder=" "
                         name="number"
                         className={s.input}
                         value={this.state.number}

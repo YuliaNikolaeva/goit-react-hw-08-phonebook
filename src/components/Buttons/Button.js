@@ -16,7 +16,7 @@ const ButtonDelete = ({ onClick, contactId }) => {
 
 ButtonDelete.propTypes = {
     onClick: PropTypes.func,
-    contactId: PropTypes.number,
+    contactId: PropTypes.string,
 };
 
 

@@ -3,6 +3,11 @@ import { connect }  from 'react-redux';
 
 import authOperations from '../redux/auth/auth-operations';
 
+import { Button } from 'react-bootstrap';
+import s from './LoginPage.module.css';
+import Container from '../components/Container';
+
+
 const {login} = authOperations;
 
 
@@ -23,21 +28,20 @@ class LoginPage extends Component {
 
         this.setState({name: '', email: '', password: ''})
     };
-    
 
     render() {
         const {email, password} = this.state;
 
         return (
-            <>
-                <h2>Страница авторизации</h2>
+            <Container title="Authorization page">
                 <form
                     autoComplete="off"
                     onSubmit={this.handleSubmit}
                     >
-                    <label>
-                        Почта
-                        <input 
+                    <label className={s.label}>
+                        <div className={s.head__field}>E-mail</div>
+                        <input
+                            className={s.input} 
                             type="email"
                             name="email"
                             value={email}
@@ -46,18 +50,18 @@ class LoginPage extends Component {
                     </label>
 
                     <label>
-                        Пароль
-                        <input 
+                        <div className={s.head__field}>Pass</div>
+                        <input
+                            className={s.input} 
                             type="password"
                             name="password"
                             value={password}
                             onChange={this.handleChange}
                         />
                     </label>
-                    <button type="submit">Войти</button>
+                    <Button type="submit">Enter</Button>
                 </form>
-            </>
-            
+            </Container>
         );
     }
  }
@@ -65,7 +69,7 @@ class LoginPage extends Component {
 
  const mapDispatchToProps = dispatch => ({
      onLogin: (credentials) => dispatch(login(credentials)),
- })
+ });
 
  
 export default connect(null, mapDispatchToProps)(LoginPage);

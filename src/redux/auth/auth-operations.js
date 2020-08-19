@@ -73,7 +73,7 @@ const token = {
     .catch(err => dispatch(getCurrentUserError(err.message)));
   };
 
-  
+
   export default {
     register,
     login,

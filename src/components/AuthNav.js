@@ -1,21 +1,26 @@
 import React from 'react';
-import s from './Navigation.module.css';
 import { NavLink } from 'react-router-dom';
+
+import s from './AuthNav.module.css';
 
 
 const AuthNav = () => (
-  <div className={s.nav}>
+  <div>
     <NavLink
+      activeStyle={{color:"#656566"}}
+      className={s.secondNav}
       to="/register"
       exact
     >
-      Регистрация
+      Registration
     </NavLink>
     <NavLink
+      activeStyle={{color:"#656566"}}
+      className={s.secondNav}
       to="/login"
       exact
     >
-      Авторизация
+      Authorization
     </NavLink>
   </div>
 );

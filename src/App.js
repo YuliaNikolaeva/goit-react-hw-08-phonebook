@@ -10,9 +10,11 @@ import Loader from 'react-loader-spinner';
 import authOperations from './redux/auth/auth-operations';
 import AppBar from './components/AppBar';
 
+import ContainerGeneralForPage from './components/ContainerGeneralForPage';
+
 
 const HomePage = lazy(() => 
-    import('./pages/ContactsPage' /*webpackChunkName: "home-page" */)
+    import('./pages/HomePage' /*webpackChunkName: "home-page" */)
 );
 
 const ContactsPage = lazy(() => 
@@ -38,7 +40,7 @@ class App extends Component {
 
     render() {
         return (
-            <>
+            <ContainerGeneralForPage>
                 <AppBar />
                 <Suspense 
                     fallback={
@@ -75,7 +77,7 @@ class App extends Component {
                         />
                     </Switch>
                 </Suspense>
-            </>
+            </ContainerGeneralForPage>
         );
     }
 }
