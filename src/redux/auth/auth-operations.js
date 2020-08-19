@@ -57,9 +57,21 @@ const token = {
   };
 
 
+  const getCurrentUser = () => (dispatch, getState) => {
+    const {auth: {token: persistedToken}} = getState();
 
+    if(!persistedToken) {
+      return;
+    }
 
-  const getCurrentUser = () => (dispatch, getState) => {};
+    token.set(persistedToken);
+
+    dispatch(getCurrentUserRequest());
+    axios
+    .get('/users/current')
+    .then(response => dispatch(getCurrentUserSuccess(response.data)))
+    .catch(err => dispatch(getCurrentUserError(err.message)));
+  };
 
   export default {
     register,

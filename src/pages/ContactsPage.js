@@ -16,6 +16,7 @@ const {fetchContacts} = contactOperations;
 
 const {getContacts, getLoading} = contactSelectors;
 
+
 class App extends Component {
 
     componentDidMount() {
